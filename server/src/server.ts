@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'express';
+import cors from 'cors';
 
 import { PrismaClient } from '@prisma/client';
 import { convertHourStringToMinutes } from './utils/convert-hour-string-to-minutes';
@@ -8,7 +8,7 @@ import { convertMinutesToHourString } from './utils/convert-minutes-to-hour-stri
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 /* Para delimitar o uso da api apenas para o domínio próprio:
 origin: 'https://meudominio.com.br' */
 
