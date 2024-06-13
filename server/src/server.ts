@@ -89,4 +89,4 @@ app.get('/ads/:id/discord', async (request, response) => {
   })
 })
  */
-app.listen(3333, () => console.log("Rodando na porta 3333..."))
+app.listen(80, () => console.log("Rodando na porta 3333..."))
