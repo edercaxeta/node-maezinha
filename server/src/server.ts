@@ -16,39 +16,32 @@ const prisma = new PrismaClient({
   log:['query']
 });
 
-app.get('/games', async (request, response) =>  {
-  const games = await prisma.game.findMany({
-    include: {
-      _count: {
-        select: {
-          ads: true,
-        }
-      }
-    }
-  }) 
+app.get('/users', async (request, response) =>  {
+  const users = await prisma.user.findMany({}) 
 
-  return response.json(games);
+  return response.json(users);
 });
 
-app.post('/games/:id/ads', async (request, response) =>  {
-  const gameId = request.params.id;
+app.post('user', async (request, response) =>  {  
   const body: any = request.body;   
 
-  const ad = await prisma.ad.create({
+  const user = await prisma.user.create({
     data:{
-      gameId,
-      name : body.name, 
-      yearsPlaying : body.yearsPlaying,
-      discord : body.discord,
-      weekDays : body.weekDays.join(','),
-      hourStart : convertHourStringToMinutes(body.hourStart),
-      hourEnd : convertHourStringToMinutes(body.hourEnd),
-      useVoiceChannel : body.useVoiceChannel,
+      Nome : body.nome,
+      Email : body.nome,
+      Senha : body.nome,
+      CEP : body.nome,
+      Logradouro : body.nome,
+      Complemento : body.nome,
+      Cidade : body.nome,
+      Estado : body.nome,
+      Aceite : body.nome
     }
   })
-  return response.status(201).json(ad);
+  return response.status(201).json(user);
 });
 
+/* 
 app.get('/games/:id/ads', async (request, response) => {    
   const gameId = request.params.id;
 
@@ -95,5 +88,5 @@ app.get('/ads/:id/discord', async (request, response) => {
     discord: ad.discord,
   })
 })
-
+ */
 app.listen(3333, () => console.log("Rodando na porta 3333..."))
